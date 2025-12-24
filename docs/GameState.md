@@ -39,6 +39,8 @@ TV Token saved -> TV mode
 ### Always visible:
 1. Display Name (at top)
 2. Reveal Gift numbers button (bottom or top?)
+3. Guess Score
+4. Current lock items
 
 ### Pregame Idle
 1. Awaiting host message
@@ -56,7 +58,40 @@ TV Token saved -> TV mode
 ### Game Idle
 1. Awaiting turn message
 
+### Your turn
+1. Show my gift numbers button
+2. Roll Dice button
 
+### Dice Roll Action view
+1. Dice value rolled image and value
+2. Action Message
+3. Menu buttons for dice action
+
+#### Dice action 1: Forced Steal/trade with middle
+1. If no gifts remain, dice action is passed
+2. (If applicable) Choose Gift to put in middle
+3. Enter gift name/number of gift taken from middle (If gifts remain)
+
+#### Dice action 2/3: Force trade with Left/Right (Turn Player)
+1. Select gift to give
+2. Confirm
+
+#### Target of dice action 2/3
+1. Select gift to give
+2. Confirm
+
+#### Dice action 4: Power trade with any player
+1. Choose Gift to receive (by player, gift name, or gift number)
+2. Choose Gift to give
+
+#### Target of dice action 4
+1. Give gift to player x message
+
+### Bonus Action View
+1. Unwrap Gift (greyed out if impossible)
+2. Take a guess (greyed out if impossible)
+3. Use a lock (greyed out if impossible)
+4. Pass turn
 
 ### Enter Display Name view
 1. Search bar for display name. Must have explicit search button that closes keyboard

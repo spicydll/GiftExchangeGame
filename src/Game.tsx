@@ -1,22 +1,31 @@
 import React, { useState } from "react";
 
 import {OutlineButton, Button} from "./components/Button";
-import Stack from "./components/Stack";
+import Stack, { FixedStack } from "./components/Stack";
 import GameController from "./prefabs/GameController";
 import Textbox from "./components/Textbox";
 import Search, {type SearchData} from "./components/Search";
 
 export function Game() {
-  const search_data: Array<SearchData> = [{
+  let search_data: Array<SearchData> = [{
     displayValue: "First Item",
-    sumbitData: "hello",
+    submitData: "hello",
   },{
     displayValue: "Second Thing",
-    sumbitData: "bye",
+    submitData: "bye",
   }];
+  for (let i = 0; i < 10; i++) {
+    search_data.push({
+      displayValue: "Extra " + i.toString(),
+      submitData: "Item " + i.toString(),
+    });
+  }
   return (
     <GameController headerText="Gift Exchange Game">
-      <Search data={search_data} placeholder="John Doe" prompt="Select Player"></Search>
+      <FixedStack>
+        <Search data={search_data} placeholder="John Doe" prompt="Select Player"></Search>
+        <Button onClick={() => {}}>Submit</Button>
+      </FixedStack>
     </GameController>
   );
 }

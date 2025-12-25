@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Textbox from "./Textbox";
 import Stack, {FixedStack} from "./Stack";
-import Button from "./Button";
+import {SelectButton} from "./Button";
 
 export interface SearchData {
     displayValue: string,
-    sumbitData: any,
+    submitData: any,
 }
 
 interface Props {
@@ -14,7 +14,10 @@ interface Props {
     prompt: string,
 }
 
-function searchMatch(item: SearchData, searchTerm: string): boolean {
+function searchMatch(item: SearchData | undefined, searchTerm: string): boolean {
+    if (item === undefined) {
+        return true;
+    }
     const strippedTerm = searchTerm.trim().toLowerCase();
     return strippedTerm === "" || item.displayValue.toLowerCase().includes(strippedTerm);
 }
@@ -25,20 +28,27 @@ const Search: React.FC<Props> = ({
     prompt,
 }) => {
     const [searchTerm, setSearchTerm] = useState("");
+
+    const [selectedItem, setSelectedItem] = useState<SearchData | undefined>();
     return (
         <FixedStack>
             <Textbox
                 name="searchbox"
                 placeholder={placeholder}
                 label={prompt}
-                onChange={e => setSearchTerm(e.target.value)}
+                onChange={e => {
+                    setSearchTerm(e.target.value);
+                    if (!searchMatch(selectedItem, e.target.value)) {
+                        setSelectedItem(undefined);
+                    }
+                }}
                 />
             <Stack>
                 {data.filter((item) => (searchMatch(item, searchTerm))).map((item, i) => {
                     return (
-                        <Button key={i}
-                            onClick={() => console.log(item.sumbitData)}
-                        >{item.displayValue}</Button>
+                        <SelectButton key={i} selected={selectedItem === item}
+                            onClick={() => setSelectedItem(item)}
+                        >{item.displayValue}</SelectButton>
                     );
                 })}
             </Stack>

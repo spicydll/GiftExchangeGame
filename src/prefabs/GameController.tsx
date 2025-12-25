@@ -14,7 +14,7 @@ const GameController: React.FC<Props> = ({headerText, children}) => {
   return (
     <Container>
       <Header>{headerText}</Header>
-      <div className="p-4">{children}</div>
+      <div className="flex flex-col p-4 flex-1">{children}</div>
     </Container>
   );
 }
